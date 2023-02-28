@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Search() {
+function Search({filterFunction}) {
+  const [text, updateText] = useState("")
+  //text = input
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
+    console.log(text);
+    filterFunction(text)
   }
 
   return (
@@ -12,8 +15,9 @@ function Search() {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
-        onChange={(e) => console.log(e.target.value)}
+        value={text}
+        onChange={(e) => updateText(e.target.value)}
+        //when anything changes in the box it updates the textbox. setter function.
       />
       <button type="submit">🔍</button>
     </form>
